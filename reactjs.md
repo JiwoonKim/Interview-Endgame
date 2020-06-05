@@ -54,7 +54,7 @@
 
    Elements solve these problems since they are __just descriptions and not the actual instances__. They don’t refer to anything on the screen when you create them. You can create them and throw them away, and it won’t matter much. They are easy to traverse, don’t need to be parsed. Since they are just objects, they are __much lighter than the actual DOM elements__, making them cheap to create compared to browser DOM elements.
 
-   Typically, elements are not used directly, but get returned from components.
+   Typically, elements are not used directly, but get returned from components. And since an element's type can be a DOM node or a React component, __DOM and component elements are mixed and matched in a single element tree__. This composition structure ensures components are decoupled from each other.
    
    - https://reactjs.org/blog/2015/12/18/react-components-elements-and-instances.html
    
