@@ -5,12 +5,24 @@
 | :seedling:  | __Core React__ |
 | 0 | What is React? |
 | 1 | What are the major features of React? |
-| 2 | What is the VirtualDOM and how does it work? |
+|   | __Optimizations__ |
+|  | What is the VirtualDOM and how does it work? |
+
 
 ## :seedling: Core React
 
-0. __What is React?__
+0. ### What is React? ###
 
-1. __What are the major features of React?__
+React is an __open-source frontend JavaScript library__ used for building user interfaces especially for single page applications. 
 
-2. __What is the VirtualDOM and how does it work?__
+1. ### What are the major features of React?
+
+The major features of React are:
+
+- It uses __VirtualDOM__ instead RealDOM considering that RealDOM manipulations are expensive.
+- Supports __server-side rendering__.
+- Follows __Unidirectional data flow__ or data binding.
+- Uses __reusable/composable UI components__ to develop the view.
+
+
+2. ### What is the VirtualDOM and how does it work?
