@@ -2,14 +2,14 @@
 
 | No. | Questions |
 |:---:|:---|
-| :seedling:  | __Core React__ |
+| :dart:  | __Core React__ |
 | 1 | What is React? |
 | 2 | What are the major features of React? |
-| :rocket:  | __Optimizations__ |
+| :rainbow:  | __Optimizations__ |
 | 1 | What is the VirtualDOM and how does it work? |
 
 
-## :seedling: Core React
+## :dart: Core React
 
 1. ### What is React? ###
 
@@ -24,6 +24,6 @@
    - Follows __Unidirectional data flow__ or data binding.
    - Uses __reusable/composable UI components__ to develop the view.
 
-## :rocket: Optimizations
+## :rainbow: Optimizations
 
 1. ### What is the VirtualDOM and how does it work?
