@@ -37,16 +37,22 @@
    
    
    ```js
+   // JSX syntax
    const element = <h1>Hello, world</h1>;
+   
+   // React element (described as object)
+   {
+      type: 'h1',
+      props: {
+        className: 'container',
+        children: 'Hello, world',
+      }
+    }
    ```
    
-   Elements were introduced in need of solving the problem of traditional object-oriented UI programming (working with component classes and instances). In this traditional UI model, it was up to the developer to take care of creating and destroying child component instances, and manually keep them up to date with any new information. Since the parents needed direct access to the children component instances, it also made it hard to decouple them in the future.
+   Elements were introduced in need of solving the problem of traditional object-oriented UI programming (working with component classes and instances). In this traditional UI model, it was up to the developer to take care of _creating and destroying child component instances, and manually keep them up to date with any new information_. Since the parents needed direct access to the children component instances, it also made it _hard to decouple them in the future_.
 
    Elements solve these problems since they are __just descriptions and not the actual instances__. They don’t refer to anything on the screen when you create them. You can create them and throw them away, and it won’t matter much. They are easy to traverse, don’t need to be parsed. Since they are just objects, they are __much lighter than the actual DOM elements__, making them cheap to create compared to browser DOM elements.
-
-   It’s just an __immutable description object__ with two fields: type: (string | ReactClass) and props: Object1. 
-
-React DOM takes care of updating the DOM to match the React elements.
 
    Typically, elements are not used directly, but get returned from components.
    
