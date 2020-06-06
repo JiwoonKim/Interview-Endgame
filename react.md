@@ -9,6 +9,11 @@
 | 4 | What is a React element? |
 | 5 | What is a component? |
 | 6 | How is a component rendered to the page? |
+| 7 | What are props? |
+| 8 | What is a state? |
+| 9 | What is the difference between state and props? |
+| 10 | Why should state not be updated directly? |
+| 11 | |
 | :rocket:  | __Optimizations__ |
 | 1 | What is the VirtualDOM and how does it work? |
 
@@ -71,7 +76,9 @@
    
 5. ### What is a component?
  
-   React components are small, reusable pieces of code that return a React element to be rendered to the page. They accept arbitrary inputs (called props) and return React elements describing what should appear on the screen.
+   React components are __small, reusable pieces of code__ that return a React element to be rendered to the page. They __accept arbitrary inputs (called props) and return React elements__ describing what should appear on the screen.
+   
+    Components can be defined by two ways: as functions and as ES6 classes.
    
    ```js
    // defined as function                   
@@ -93,6 +100,14 @@
 const element = <h1>Hello, world</h1>;
 ReactDOM.render(element, document.getElementById('root'));
 ```
+
+7. ### What are props?
+
+8. ### What is a state?
+
+9. ### What is the difference between state and props?
+
+10. ### Why should state not be updated directly?
 
 ## :rocket: Optimizations
 
