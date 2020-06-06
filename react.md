@@ -20,9 +20,9 @@
 | 1 | What is the VirtualDOM and how does it work? |
 
 ### references
-    - 
-    - [Glossary of React Terms Documentation](https://reactjs.org/docs/glossary.html#react-elements)
-    - [React Interview Questions List](https://github.com/sudheerj/reactjs-interview-questions#what-is-react)
+  - [React Documentation: Main Concepts](https://reactjs.org/docs/hello-world.html)
+  - [Glossary of React Terms Documentation](https://reactjs.org/docs/glossary.html#react-elements)
+  - [React Interview Questions List](https://github.com/sudheerj/reactjs-interview-questions#what-is-react)
 
 ## :dart: Core React
 
@@ -130,6 +130,24 @@ ReactDOM.render(element, document.getElementById('root'));
     ![image](https://user-images.githubusercontent.com/29671309/83942527-135cce80-a82f-11ea-8ca2-c38e88583e31.png)
     
     #### Mounting
+    when an instance of a component is being created and inserted into the DOM
+    - __`constructor()`__: initialize local state and you bind event handlers to component instance
+    - __`render()`__: returns React elements
+    - React updates DOM & refs
+    - __`componentDidMount()`__: execute side-effects (i.e. request data via network, set up subscriptions, call `setState`)
+    
+    #### Updating
+    when a component is being re-rendered due to changes to props or state
+    - new props, setState(), forceUpdate() trigger update
+    - __`render()`__: returns React elements
+    - React updates DOM & refs
+    - __`componentDidUpdate()`__: execute side-effects (i.e. request data via network, set up subscriptions, call `setState`)
+      - avoid calling `setState()` directly in componentDidUpdate() method since it creates an infinite loop (if necessary, use with condition)
+    
+    #### Unmounting
+    when a component is being removed from the DOM
+    - __`componentWillUnmount()`__: cleanup before component is unmounted
+      - invalidate timer, cancel network requests and subscriptions
     
 12. ### How does React have a unidirectional data flow?
     This is commonly called a “top-down” or “unidirectional” data flow. Any state is always owned by some specific component, and any data or UI derived from that state can only affect components “below” them in the tree.
