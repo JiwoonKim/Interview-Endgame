@@ -14,9 +14,11 @@
 | 9 | What is the difference between state and props? |
 | 10 | Why should state not be modified directly? |
 | 11 | What are the benefits of batching setState calls? |
-| 12 | What are lifecycle methods? |
-| 13 | How does React have a unidirectional data flow? |
-| 14 | |
+| 12 | How does React have a unidirectional data flow? |
+| 13 | What are lifecycle methods? |
+| 14 | What is the difference between controlled and uncontrolled components? |
+| 15 | What is the benefit of using composition over inheritance in React? |
+| 16 | |
 | :anchor: | __Hooks__ |
 | 1 | What are hooks and why are they used? |
 | 2 | How does the useEffect hook work? |
@@ -40,8 +42,8 @@
 
    The major features of React are:
 
-   - It uses __VirtualDOM__ instead RealDOM considering that RealDOM manipulations are expensive. ([VirtualDOM](#What is the VirtualDOM and how does it work?)
-   - Follows __Unidirectional data flow__ or data binding.
+   - It uses [__VirtualDOM__](#what-is-the-virtualdom-and-how-does-it-work) instead RealDOM considering that RealDOM manipulations are expensive.
+   - Follows [__Unidirectional data flow__](#how-does-react-have-a-unidirectional-data-flow) or data binding.
    - Uses __reusable/composable UI components__ to develop the view.
    
 3. ### What is JSX?
@@ -145,13 +147,9 @@ ReactDOM.render(element, document.getElementById('root'));
     - reference: https://github.com/facebook/react/issues/11527#issuecomment-360199710
     
 12. ### How does React have a unidirectional data flow?
-    The Data Flows Down 
-Neither parent nor child components can know if a certain component is stateful or stateless, and they shouldn’t care whether it is defined as a function or a class.
-This is why state is often called local or encapsulated. It is not accessible to any component other than the one that owns and sets it.
-A component may choose to pass its state down as props to its child components:
-    This is commonly called a “top-down” or “unidirectional” data flow. Any state is always owned by some specific component, and any data or UI derived from that state can only affect components “below” them in the tree.
-If you imagine a component tree as a waterfall of props, each component’s state is like an additional water source that joins it at an arbitrary point but also flows down.
-To show that all components are truly isolated, 
+    __Data flows downwards in React's component tree__. _State is always owned and contained within a specific component_, and _any data or UI derived from that state can only affect component below them in the tree_.
+    
+    State is local or encapsulated to a component. It is not accessible to any component other than the one that owns and sets it. The only __way to share data is to pass its state down as props to its child components__, which is why the data flow is depicted as _top-down_ or _unidirectional_. This is why sharing state is accomplished by moving it up to the closest common ancestor of the components that need it, called _lifting state up_. 
 
 13. ### What are lifecycle methods?
     Lifecycle methods are functions executed according to the different phases of a component. It's main purpose is to __add functionality to the different phases of a component__, when it is created, updated, and destroyed.
@@ -177,6 +175,52 @@ To show that all components are truly isolated,
     when a component is being removed from the DOM
     - __`componentWillUnmount()`__: cleanup before component is unmounted
       - invalidate timer, cancel network requests and subscriptions
+      
+14. ### What is the difference between controlled and uncontrolled components?
+    React has two different approaches __to dealing with form inputs__:
+    
+    - __Controlled Component__: _form data is handled by a React component_. When a user enters data into a controlled component a _change event handler is triggered and your code decides whether the input is valid_ (by re-rendering with the updated value). If you do not re-render then the form element will remain unchanged.
+    - __Uncontrolled Component__: _works like form elements do outside of React_. When a user inputs data into a form field (an input box, dropdown, etc) the updated information is _reflected without React needing to do anything_ (since HTML Form elements such as `<input>`, `<textarea>`, `<select>` naturally keep its own internal state). However, this also means that you can’t force the field to have a certain value.
+    
+    In most cases, it is recommended to use controlled components.
+    
+15. ### What is the benefit of using composition over inheritance in React?
+    __Props and composition are a more flexible and safe way to reuse code between components__. Since components can accept aribitrary props (including primitive values, React elements, or functions), it is possible __to customize a component's look and behavior by using props and composition__. 
+    Examples of using props and composition to reuse code between components:
+    1. Containment: use the `props.children` to create generic components accepting arbitrary elements
+    ```jsx
+    function Box(props) {
+      return <div>{props.children}</div>
+    }
+    function HelloBox() {
+      return (
+        <Box>
+          <h1>Hello, world</h1>
+          <p>This is React working under the hood</p>
+        </Box>
+      )
+    }
+    ```
+    2. Specialization: use specific value for props to make special cases of a generic component
+    ```jsx
+    function Box(props) {
+      return (
+        <div>
+          <h1>{props.title}<h2>
+          <p>{props.description}</p>
+        </div>
+    }
+    function HelloBox() {
+      return (
+        <Box title="Hello, world" description="React in the works" />
+      )
+    }
+    ```
+    
+    This is a much flexible approach than using inheritance to extend components since components are not coupled.
+    
+    - cf. inheritance depicts a _is-a_ relationship, while composition depicts a _has-a_ relationship.
+    
 
 ## :anchor: Hooks
 
