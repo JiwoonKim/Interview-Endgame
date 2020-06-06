@@ -13,10 +13,16 @@
 | 8 | What is a state? |
 | 9 | What is the difference between state and props? |
 | 10 | Why should state not be updated directly? |
-| 11 | |
+| 11 | What are lifecycle methods? |
+| 12 | How does React have a unidirectional data flow? |
+| 13 | |
 | :rocket:  | __Optimizations__ |
 | 1 | What is the VirtualDOM and how does it work? |
 
+### references
+    - 
+    - [Glossary of React Terms Documentation](https://reactjs.org/docs/glossary.html#react-elements)
+    - [React Interview Questions List](https://github.com/sudheerj/reactjs-interview-questions#what-is-react)
 
 ## :dart: Core React
 
@@ -96,18 +102,39 @@
    ```
    
 6. ### How is a component rendered to the page?
+   Components are rendered by using the `ReactDOM.render()` method.
 ```
 const element = <h1>Hello, world</h1>;
 ReactDOM.render(element, document.getElementById('root'));
 ```
 
 7. ### What are props?
+   Props are __inputs to components__. They are __data passed down from a parent component to a child component__. Since they are read-only, they should note be modified in any way.
 
 8. ### What is a state?
+   A state of a component is an __object that holds some information that may change over the lifetime of the component__. State is __used for internal communication inside component__.
+   
 
 9. ### What is the difference between state and props?
+   Both props and state are plain JavaScript objects. 
+   
+   While both of them hold information that influences the output of render, they are different in their functionality with respect to component. The differences between the two are:
+   - __props are passed from a parent component, but state is managed by the component itself__. 
+   - A component __cannot change its props, but it can change its state__. 
 
-10. ### Why should state not be updated directly?
+10. ### Why should state not be updated directly
+
+11. ### What are lifecycle methods?
+    Lifecycle methods are functions executed according to the different phases of a component. It's main purpose is to __add functionality to the different phases of a component__, when it is created, updated, and destroyed.
+    
+    ![image](https://user-images.githubusercontent.com/29671309/83942527-135cce80-a82f-11ea-8ca2-c38e88583e31.png)
+    
+    #### Mounting
+    
+12. ### How does React have a unidirectional data flow?
+    This is commonly called a “top-down” or “unidirectional” data flow. Any state is always owned by some specific component, and any data or UI derived from that state can only affect components “below” them in the tree.
+If you imagine a component tree as a waterfall of props, each component’s state is like an additional water source that joins it at an arbitrary point but also flows down.
+To show that all components are truly isolated, 
 
 ## :rocket: Optimizations
 
