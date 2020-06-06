@@ -12,8 +12,8 @@
 | 7 | What are props? |
 | 8 | What is a state? |
 | 9 | What is the difference between state and props? |
-| 10 | Why should state not be updated directly? |
-| 11 | Why are the benefits of batching setState calls? |
+| 10 | Why should state not be modified directly? |
+| 11 | What are the benefits of batching setState calls? |
 | 12 | What are lifecycle methods? |
 | 13 | How does React have a unidirectional data flow? |
 | 14 | |
@@ -115,12 +115,11 @@ ReactDOM.render(element, document.getElementById('root'));
 ```
 
 7. ### What are props?
-   Props are __inputs to components__. They are __data passed down from a parent component to a child component__. Since they are read-only, they should note be modified in any way.
+   Props are __inputs to components__. They are __data passed down from a parent component to a child component__. Since they are read-only, they should not be modified in any way.
 
 8. ### What is a state?
    A state of a component is an __object that holds some information that may change over the lifetime of the component__. State is __used for internal communication inside component__.
    
-
 9. ### What is the difference between state and props?
    Both props and state are plain JavaScript objects. 
    
@@ -128,11 +127,33 @@ ReactDOM.render(element, document.getElementById('root'));
    - __props are passed from a parent component, but state is managed by the component itself__. 
    - A component __cannot change its props, but it can change its state__. 
 
-10. ### Why should state not be updated directly
+10. ### Why should state not be modified directly?
+    Modifying state directly is problematic since __it does not trigger re-rendering of a component__. Tt is recommended to initialize `this.state` only in the constructor and use `setState()` for updating instead.
+    
+    ```js
+    // React MERGES the object provided into the current state
+    this.setState({ message: 'Hello World' })
+    ```
+    
+    The beauty of using `setState()` is that it allows us to __let React know that the component state has changed__. This way the component knows it should re-render, because its state has changed and its UI will most likely also change. This is much __more performant than continuously checking changes in an object__ for whether a property has changed (known as "dirty checking"). By using the built-in `setState`, React already knows because it is notified of what changes should be implemented.
+    
+    - reference: https://learn.co/lessons/react-updating-state
 
-11. ### Why are the benefits of batching setState calls?
+11. ### What are the benefits of batching setState calls?
+    React may __batch multiple setState() calls into a single update for performance__ since setState always triggers a re-render of the component. So even if a child and parent component each call setState() when handling a single event, the child component will not be re-rendered twice. No matter how many setState() calls in how many components you do inside a React event handler, they will produce only a single re-render at the end of the event.
+    
+    - reference: https://github.com/facebook/react/issues/11527#issuecomment-360199710
+    
+12. ### How does React have a unidirectional data flow?
+    The Data Flows Down 
+Neither parent nor child components can know if a certain component is stateful or stateless, and they shouldn’t care whether it is defined as a function or a class.
+This is why state is often called local or encapsulated. It is not accessible to any component other than the one that owns and sets it.
+A component may choose to pass its state down as props to its child components:
+    This is commonly called a “top-down” or “unidirectional” data flow. Any state is always owned by some specific component, and any data or UI derived from that state can only affect components “below” them in the tree.
+If you imagine a component tree as a waterfall of props, each component’s state is like an additional water source that joins it at an arbitrary point but also flows down.
+To show that all components are truly isolated, 
 
-11. ### What are lifecycle methods?
+13. ### What are lifecycle methods?
     Lifecycle methods are functions executed according to the different phases of a component. It's main purpose is to __add functionality to the different phases of a component__, when it is created, updated, and destroyed.
     
     ![image](https://user-images.githubusercontent.com/29671309/83942527-135cce80-a82f-11ea-8ca2-c38e88583e31.png)
@@ -156,12 +177,22 @@ ReactDOM.render(element, document.getElementById('root'));
     when a component is being removed from the DOM
     - __`componentWillUnmount()`__: cleanup before component is unmounted
       - invalidate timer, cancel network requests and subscriptions
-    
-12. ### How does React have a unidirectional data flow?
-    This is commonly called a “top-down” or “unidirectional” data flow. Any state is always owned by some specific component, and any data or UI derived from that state can only affect components “below” them in the tree.
-If you imagine a component tree as a waterfall of props, each component’s state is like an additional water source that joins it at an arbitrary point but also flows down.
-To show that all components are truly isolated, 
+
+## :anchor: Hooks
+
+1. ### What are hooks
+   Hooks are __functions that let you “hook into” React state and lifecycle features from function components__. Hooks don’t work inside classes — they let you use React without classes.
+   
+   
 
 ## :rocket: Optimizations
 
 1. ### What is the VirtualDOM and how does it work?
+
+2. ###
+   Keys help React identify which items have changed, are added, or are removed. Keys should be given to the elements inside the array to give the elements a stable identity:
+   A “key” is a special string attribute you need to include when creating arrays of elements. Keys help React identify which items have changed, are added, or are removed. Keys should be given to the elements inside an array to give the elements a stable identity.
+Keys only need to be unique among sibling elements in the same array. They don’t need to be unique across the whole application or even a single component.
+Don’t pass something like Math.random() to keys. It is important that keys have a “stable identity” across re-renders so that React can determine when items are added, removed, or re-ordered. Ideally, keys should correspond to unique and stable identifiers coming from your data, such as post.id.
+ If you choose not to assign an explicit key to list items then React will default to using indexes as keys.
+   https://reactjs.org/docs/lists-and-keys.html#keys
