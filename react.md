@@ -13,11 +13,17 @@
 | 8 | What is a state? |
 | 9 | What is the difference between state and props? |
 | 10 | Why should state not be updated directly? |
-| 11 | What are lifecycle methods? |
-| 12 | How does React have a unidirectional data flow? |
-| 13 | |
+| 11 | Why are the benefits of batching setState calls? |
+| 12 | What are lifecycle methods? |
+| 13 | How does React have a unidirectional data flow? |
+| 14 | |
+| :anchor: | __Hooks__ |
+| 1 | What are hooks and why are they used? |
+| 2 | How does the useEffect hook work? |
 | :rocket:  | __Optimizations__ |
 | 1 | What is the VirtualDOM and how does it work? |
+| 2 | What are "key" props and what is the benefit of using them in arrays of elements? |
+| 3 | What is memoization and how does it improve the performance in React? |
 
 ### references
   - [React Documentation: Main Concepts](https://reactjs.org/docs/hello-world.html)
@@ -28,13 +34,13 @@
 
 1. ### What is React?
 
-   React is an __open-source frontend JavaScript library__ used for building user interfaces especially for single page applications. 
+   React is an open-source __frontend JavaScript library used for building user interfaces__ especially for single page applications. 
 
 2. ### What are the major features of React?
 
    The major features of React are:
 
-   - It uses __VirtualDOM__ instead RealDOM considering that RealDOM manipulations are expensive.
+   - It uses __VirtualDOM__ instead RealDOM considering that RealDOM manipulations are expensive. ([VirtualDOM](#What is the VirtualDOM and how does it work?)
    - Follows __Unidirectional data flow__ or data binding.
    - Uses __reusable/composable UI components__ to develop the view.
    
@@ -123,6 +129,8 @@ ReactDOM.render(element, document.getElementById('root'));
    - A component __cannot change its props, but it can change its state__. 
 
 10. ### Why should state not be updated directly
+
+11. ### Why are the benefits of batching setState calls?
 
 11. ### What are lifecycle methods?
     Lifecycle methods are functions executed according to the different phases of a component. It's main purpose is to __add functionality to the different phases of a component__, when it is created, updated, and destroyed.
