@@ -40,7 +40,7 @@
    ```
 
 3. ### What is code-splitting?
-   Code splitting is the __process of splitting code into various bundles to optimze load performance__. While it does not reduce the overall amount of code, an application can split code into small chunks to
+   Code splitting is the __process of splitting code into various bundles to optimize load performance__. While it does not reduce the overall amount of code, an application can split code into small chunks to
    - __reduce initial load time__ since it can leave out unnecessary code at the timing
    - __lazy-load to improve performance__ to load just the things currently needed at the moment
    
